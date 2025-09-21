@@ -6,32 +6,28 @@ import { toast } from "react-toastify";
 const ReportGenerator = () => {
   const [sessionId, setSessionId] = useState("");
   const [message, setMessage] = useState("");
-  const { user } = useContext(AuthContext); // get logged-in user
+  const { user } = useContext(AuthContext);
 
   const handleGenerate = async (e) => {
     e.preventDefault();
-
     if (!sessionId) {
       setMessage("Please enter a session ID.");
       toast.error("Please enter a session ID.");
       return;
     }
-
     if (!user?.email) {
       setMessage("User email not found. Please log in again.");
       toast.error("User email not found. Please log in again.");
       return;
     }
-
     try {
       const response = await axios.post(
         "http://localhost:5000/report/generate/pdf",
         {
           session_id: sessionId,
-          userEmail: user.email, // send user email along with session_id
+          userEmail: user.email,
         }
       );
-
       if (response.status === 200) {
         setMessage("Report generated successfully!");
         toast.success("Report generated successfully!");

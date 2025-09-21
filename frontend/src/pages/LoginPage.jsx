@@ -9,7 +9,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -18,8 +17,8 @@ const LoginPage = () => {
     try {
       const res = await axios.post("http://localhost:5000/auth/login", { email, password, });
       if (res.status === 200) {
-        const userData = { email, token: res.data.token }; // store what you need
-        login(userData); // <-- update context
+        const userData = { email, token: res.data.token };
+        login(userData);
         localStorage.setItem("token", res.data.token);
         navigate("/dashboard");
         toast.success("Login successful!");
@@ -49,7 +48,6 @@ const LoginPage = () => {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="py-8 px-6 shadow rounded-lg sm:px-10">
           <div className="space-y-6">
-            {/* Username */}
             <div>
               <label className="block text-sm font-medium text-white">
                 Email
@@ -63,8 +61,6 @@ const LoginPage = () => {
                 required
               />
             </div>
-
-            {/* Password */}
             <div>
               <label className="block text-sm font-medium text-white">
                 Password
@@ -78,8 +74,6 @@ const LoginPage = () => {
                 required
               />
             </div>
-
-            {/* Error */}
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <button

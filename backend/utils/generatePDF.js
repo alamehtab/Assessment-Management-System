@@ -37,22 +37,18 @@ module.exports = async function generatePDF(data, config, userEmail) {
 
   let html = fs.readFileSync(templatePath, "utf-8");
 
-  // Fill all fields
   for (let key in config.fields) {
     const value = getNestedValue(data, config.fields[key]);
     html = html.replace(new RegExp(`{{${key}}}`, "g"), value);
   }
 
-  // Body composition fields
   const bodyComp = data.bodyCompositionData || {};
   ["BFC", "LM", "BMR", "FMI", "AGR", "WHR"].forEach(field => {
     html = html.replace(new RegExp(`{{${field}}}`, "g"), bodyComp[field] ?? "N/A");
   });
 
-  // Exercises table
   html = html.replace("{{exercise_table_rows}}", generateExercisesTable(data.exercises));
 
-  // Unreplaced placeholders
   html = html.replace(/{{\w+}}/g, "N/A");
 
   const browser = await puppeteer.launch({ headless: true });

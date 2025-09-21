@@ -1,9 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 let users = [];
-
-const JWT_SECRET = "your_jwt_secret_key";
+const JWT_SECRET = "1234567890abcdef";
 
 exports.register = async (req, res) => {
   const { email, password } = req.body;
@@ -18,7 +16,7 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const {  email, password } = req.body;
+  const { email, password } = req.body;
   const user = users.find(u => u.email === email);
   if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
@@ -26,5 +24,5 @@ exports.login = async (req, res) => {
   if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
   const token = jwt.sign({ email: email }, JWT_SECRET);
-  res.status(200).json({message:"Login Successful", token });
+  res.status(200).json({ message: "Login Successful", token });
 };

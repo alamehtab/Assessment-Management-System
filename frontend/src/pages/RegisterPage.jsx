@@ -9,21 +9,17 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
-
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setServerError("");
-
     if (errors.email || errors.password || errors.confirmPassword) return;
-
     try {
       const res = await axios.post("http://localhost:5000/auth/register", {
         email,
         password,
       });
-
       if (res.status === 200) {
         navigate("/login");
         toast.success("Registration successful! Please log in.")
@@ -53,7 +49,6 @@ const RegisterPage = () => {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="py-8 px-6 shadow rounded-lg sm:px-10">
           <div className="space-y-6">
-            {/* Email */}
             <div>
               <label className="block text-sm font-medium text-white">
                 Email
@@ -80,8 +75,6 @@ const RegisterPage = () => {
                 <p className="text-red-500 text-sm">{errors.email}</p>
               )}
             </div>
-
-            {/* Password */}
             <div>
               <label className="block text-sm font-medium text-white">
                 Password
@@ -113,8 +106,6 @@ const RegisterPage = () => {
                 <p className="text-red-500 text-sm">{errors.password}</p>
               )}
             </div>
-
-            {/* Confirm Password */}
             <div>
               <label className="block text-sm font-medium text-white">
                 Confirm Password
@@ -142,8 +133,6 @@ const RegisterPage = () => {
                 </p>
               )}
             </div>
-
-            {/* Server error */}
             {serverError && (
               <p className="text-red-500 text-sm">{serverError}</p>
             )}

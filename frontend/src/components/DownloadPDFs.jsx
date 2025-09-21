@@ -8,18 +8,14 @@ const DownloadPDFs = () => {
   const [pdfList, setPdfList] = useState([]);
   const { user } = useContext(AuthContext);
 
-  // ✅ Fetch PDFs wrapped in a function so we can reuse it
   const fetchPDFs = () => {
     if (user?.email) {
-      axios
-        .get("http://localhost:5000/report/download/pdf", {
-          params: { userEmail: user.email },
-        })
-        .then((res) => setPdfList(res.data.pdfs))
-        .catch((err) =>{
-           console.error("Error fetching PDFs:", err)
-            toast.error("Failed to fetch PDFs. Please try again.");
-        });
+      axios.get("http://localhost:5000/report/download/pdf", {
+        params: { userEmail: user.email },
+      }).then((res) => setPdfList(res.data.pdfs)).catch((err) => {
+        console.error("Error fetching PDFs:", err)
+        toast.error("Failed to fetch PDFs. Please try again.");
+      });
     }
   };
 
@@ -30,13 +26,12 @@ const DownloadPDFs = () => {
   const handleDelete = (fileName) => {
     if (!window.confirm("Are you sure you want to delete this PDF?")) return;
 
-    axios.delete("http://localhost:5000/report/delete/pdf", {data: { userEmail: user.email, fileName },})
-      .then(() => {
-        fetchPDFs();
-      }).catch((err) =>{
-         console.error("Error deleting PDF:", err)
-         toast.error("Failed to delete the PDF. Please try again.");
-      });
+    axios.delete("http://localhost:5000/report/delete/pdf", { data: { userEmail: user.email, fileName }, }).then(() => {
+      fetchPDFs();
+    }).catch((err) => {
+      console.error("Error deleting PDF:", err)
+      toast.error("Failed to delete the PDF. Please try again.");
+    });
   };
 
   return (
@@ -55,7 +50,6 @@ const DownloadPDFs = () => {
                 <span className="text-gray-800">{pdf.name}</span>
               </div>
               <div className="flex space-x-4">
-                {/* Preview in new tab */}
                 <a
                   href={`http://localhost:5000${pdf.path}`}
                   target="_blank"
@@ -64,7 +58,6 @@ const DownloadPDFs = () => {
                 >
                   <FaEye />
                 </a>
-                {/* Force download */}
                 <a
                   href={`http://localhost:5000${pdf.path}`}
                   download
@@ -72,7 +65,6 @@ const DownloadPDFs = () => {
                 >
                   <FaDownload />
                 </a>
-                {/* Delete */}
                 <button
                   onClick={() => handleDelete(pdf.name)}
                   className="text-red-600 hover:text-red-800 flex items-center space-x-1"
