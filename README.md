@@ -57,6 +57,7 @@ assignment/
 - PDFs saved in user-specific folders  
 
 ## Setup and Installation
+git clone https://github.com/alamehtab/Assessment-Management-System.git
 npm install
 Start the react app and the backend separately
 cd .\frontend\
