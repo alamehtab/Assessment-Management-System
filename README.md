@@ -1,7 +1,7 @@
 # Assessment Management System
 
-A **Full-Stack Web Application** for generating dynamic PDF reports from pre-existing assessment data.  
-The system is designed to handle multiple assessment types **without requiring any code modifications**, fully driven by configuration.
+A Full-Stack Web Application** for generating dynamic PDF reports from pre-existing assessment data.  
+The system is designed to handle multiple assessment types without requiring any code modifications, fully driven by configuration.
 
 ---
 
