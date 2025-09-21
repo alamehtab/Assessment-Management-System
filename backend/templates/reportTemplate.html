@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Assessment Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background-color: #f9f9f9; color: #333; }
+        h1 { text-align: center; color: #1E3A8A; margin-bottom: 40px; font-size: 28px; }
+        .report-section { background-color: #ffffff; padding: 20px 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .report-section h2 { color: #1E3A8A; font-size: 20px; margin-bottom: 15px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
+        .report-section p { font-size: 16px; margin: 8px 0; }
+        .highlight { font-weight: bold; color: #0B7285; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #1E3A8A; color: #fff; }
+        td { background-color: #f5f5f5; }
+        .footer { text-align: center; margin-top: 50px; font-size: 14px; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>Assessment Report</h1>
+
+    <div class="report-section">
+        <h2>Basic Info</h2>
+        <p><span class="highlight">Session ID:</span> {{session_id}}</p>
+        <p><span class="highlight">Accuracy:</span> {{accuracy}}%</p>
+        <p><span class="highlight">Gender:</span> {{gender}}</p>
+        <p><span class="highlight">Height:</span> {{height}} cm</p>
+        <p><span class="highlight">Weight:</span> {{weight}} kg</p>
+    </div>
+
+    <div class="report-section">
+        <h2>Heart Health & Vitals</h2>
+        <p><span class="highlight">Heart Rate:</span> {{heart_rate}} bpm</p>
+        <p><span class="highlight">Resting HR:</span> {{resting_hr}}</p>
+        <p><span class="highlight">Max HR:</span> {{max_hr}}</p>
+        <p><span class="highlight">Blood Pressure:</span> {{systolic}} / {{diastolic}} mmHg</p>
+        <p><span class="highlight">BMI:</span> {{BMI}}</p>
+        <p><span class="highlight">Stress Index:</span> {{stress_level}}</p>
+        <p><span class="highlight">VO2 Max:</span> {{vo2_max}}</p>
+        <p><span class="highlight">Endurance Score:</span> {{endurance_score}}</p>
+        <p><span class="highlight">Posture:</span> {{posture}}</p>
+    </div>
+
+    <div class="report-section">
+        <h2>Body Composition</h2>
+        <table>
+            <thead>
+                <tr><th>Parameter</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Body Fat (%)</td><td>{{BFC}}</td></tr>
+                <tr><td>Lean Mass (kg)</td><td>{{LM}}</td></tr>
+                <tr><td>BMR</td><td>{{BMR}}</td></tr>
+                <tr><td>FMI</td><td>{{FMI}}</td></tr>
+                <tr><td>AGR</td><td>{{AGR}}</td></tr>
+                <tr><td>WHR</td><td>{{WHR}}</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h2>Exercises Analysis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Total Reps</th>
+                    <th>Correct Reps</th>
+                    <th>Score</th>
+                    <th>Tips</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{exercise_table_rows}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        Report generated automatically. For official use only.
+    </div>
+</body>
+</html>
