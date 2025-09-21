@@ -58,8 +58,14 @@ assignment/
 
 ## Setup and Installation
 npm install
-npm run dev
 Start the react app and the backend separately
+cd .\frontend\
+npm run dev
+Create another terminal 
+cd .\backend\
+npm run dev
+Then click on the react-app link e.g. http://localhost:5173/
+add login or register in the url e.g. http://localhost:5173/register
 
 ## Configuration System
 The system is fully driven by configuration files:
